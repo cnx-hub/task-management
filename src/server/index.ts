@@ -1,7 +1,7 @@
 import NXRequest from './request'
 
 const nxRequest = new NXRequest({
-  baseURL: '123',
+  baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 5000, //修改
   requestInterceptor: (config) => {
     return config
