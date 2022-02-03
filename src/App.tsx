@@ -1,17 +1,16 @@
 import React from 'react'
+import { Button } from 'antd'
+import ErrorBoundary from 'components/error-boundary'
+import './App.less'
 
-import Template from './template'
-import Template1 from './template1'
-import Template2 from './template2'
+import { FullPageErrorFallback } from 'components/lib'
 
 function App() {
   return (
     <div className="App">
-      <Template></Template>
-      <br />
-      <Template1></Template1>
-      <br />
-      <Template2></Template2>
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+        <Button type="primary">Button</Button>
+      </ErrorBoundary>
     </div>
   )
 }

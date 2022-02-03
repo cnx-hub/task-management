@@ -1,8 +1,8 @@
 import React, { Dispatch } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { rootState } from './store'
-import { ICounterAction, ICountState } from './store/count'
-import { IhomeState } from './store/home'
+import { rootState } from '../store'
+import { ICounterAction, ICountState } from '../store/count'
+import { IhomeState } from '../store/home'
 
 export default function Template2() {
   // 使用hooks结合redux

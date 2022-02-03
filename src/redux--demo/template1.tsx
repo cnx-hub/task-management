@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 // 类型
 import { Dispatch } from 'redux'
-import { rootState } from './store'
-import { ICounterAction } from './store/count'
-import { Ihome } from './store/home'
+import { rootState } from '../store'
+import { ICounterAction } from '../store/count'
+import { Ihome } from '../store/home'
 
 interface IProps {
   home: Ihome
