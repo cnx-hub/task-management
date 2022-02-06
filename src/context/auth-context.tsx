@@ -16,6 +16,7 @@ interface AuthForm {
 const bootstrapUser = async () => {
   let user = null
   const token = auth.getToken()
+  // token保持登录状态
   if (token) {
     const data = await http('me', { token })
     user = data.user

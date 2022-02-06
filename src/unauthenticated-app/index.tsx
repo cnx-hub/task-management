@@ -10,6 +10,7 @@ import right from 'assets/right.svg'
 import { ErrorBox } from 'components/lib'
 import { useDocumentTitle } from 'utils'
 import LoginScreen from 'unauthenticated-app/login'
+import RegisterScreen from 'unauthenticated-app/register'
 
 export default function UnauthenticatedApp() {
   const [isRegister, setIsRegister] = useState<boolean>(false)
@@ -24,7 +25,11 @@ export default function UnauthenticatedApp() {
       <ShadowCard>
         <Title>{isRegister ? '请注册' : '请登录'}</Title>
         <ErrorBox error={error} />
-        <LoginScreen onError={setError}></LoginScreen>
+        {isRegister ? (
+          <RegisterScreen onError={setError} />
+        ) : (
+          <LoginScreen onError={setError} />
+        )}
         <Divider />
         <LongButton type={'link'} onClick={() => setIsRegister(!isRegister)}>
           {isRegister ? '已经有账号了？直接登录' : '没有账号？注册新账号'}
