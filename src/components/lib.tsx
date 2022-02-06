@@ -13,6 +13,7 @@ const isError = (value: any): value is Error => value?.message // is类型 表�
 
 export const ErrorBox = ({ error }: { error: unknown }) => {
   if (isError(error)) {
+    console.log(error?.message)
     return <Typography.Text type={'danger'}>{error?.message}</Typography.Text>
   }
   return null

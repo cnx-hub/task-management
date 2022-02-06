@@ -12,7 +12,6 @@ export default function LoginScreen({
 }) {
   const { login } = useAuth()
   const { run, isLoading } = useAsync(undefined, { throwOnError: true })
-  console.log(isLoading)
 
   // HTMLFormElement extends Element
   const handleSubmit = async (values: {
@@ -22,6 +21,7 @@ export default function LoginScreen({
     try {
       await run(login(values))
     } catch (err: any) {
+      err.message = '用户名或密码不正确'
       onError(err)
     }
   }
