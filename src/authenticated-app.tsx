@@ -30,12 +30,12 @@ const HeaderItem = styled.h3`
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 6rem 1fr 6rem;
-  grid-template-columns: 20rem 1fr 20rem;
+  grid-template-rows: 6rem 1fr; // 6rem;
+  /* grid-template-columns: 20rem 1fr 20rem;
   grid-template-areas:
     'header header header'
     'nav main aside'
-    'footer footer footer';
+    'footer footer footer'; */
   height: 100vh;
   /* grid-gap: 10rem; */
 `
@@ -54,18 +54,8 @@ const HeaderLeft = styled(Row)`
 `
 const HeaderRight = styled.div``
 const Main = styled.main`
-  grid-area: main;
+  /* display: flex; */
+  overflow: hidden;
+  /* grid-area: main; */
   /* height: calc(100vh - 6rem); */
-`
-
-const Nav = styled.nav`
-  grid-area: nav;
-`
-
-const Aside = styled.aside`
-  grid-area: aside;
-`
-
-const Footer = styled.footer`
-  grid-area: footer;
 `
