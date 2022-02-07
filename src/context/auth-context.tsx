@@ -1,13 +1,11 @@
 import React, { ReactNode, useCallback } from 'react'
 import * as auth from 'auth-provider'
-
 import type { User } from 'types/user'
-import { useAsync } from 'utils/use-async'
-
 import { FullPageLoading, FullPageErrorFallback } from 'components/lib'
 import { useMount } from 'utils'
 import { http } from 'utils/http'
-
+import { useAsync } from 'utils/use-async'
+import { useQueryClient } from 'react-query'
 interface AuthForm {
   username: string
   password: string
@@ -46,9 +44,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     run
   } = useAsync<User | null>()
 
+  // Access the client
+  const queryClient = useQueryClient()
+
   const login = (form: AuthForm) => auth.login(form).then(setUser)
   const register = (form: AuthForm) => auth.register(form).then(setUser)
-  const logout = () => auth.logout()
+  const logout = () =>
+    auth.logout().then(() => {
+      setUser(null)
+      queryClient.clear()
+    })
 
   useMount(
     useCallback(() => {
@@ -65,9 +70,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider
+      children={children}
+      value={{ user, login, register, logout }}
+    />
   )
 }
 

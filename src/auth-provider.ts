@@ -7,7 +7,7 @@ const localStorageKey = '__auth_provider_token__'
 export const getToken = () => window.localStorage.getItem(localStorageKey)
 
 export const handleUserResponse = ({ user }: { user: User }) => {
-  console.log(2, user)
+  // console.log(2, user)
 
   window.localStorage.setItem(localStorageKey, user.token || '')
   return user
@@ -37,9 +37,9 @@ export const register = (data: { username: string; password: string }) => {
     },
     body: JSON.stringify(data)
   }).then(async (res) => {
-    console.log(1, res)
+    // console.log(1, res)
     const r = await res.json()
-    console.log(2, r)
+    // console.log(2, r)
     if (res.ok) {
       return handleUserResponse(await res.json())
     } else {
