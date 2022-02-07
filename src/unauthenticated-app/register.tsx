@@ -52,7 +52,7 @@ export default function RegisterScreen({
         name={'cpassword'}
         rules={[{ required: true, message: '请输入密码' }]}
       >
-        <Input placeholder={'密码'} type={'password'} id={'cpassword'} />
+        <Input placeholder={'确认密码'} type={'password'} id={'cpassword'} />
       </Form.Item>
       <Form.Item>
         <LongButton type={'primary'} htmlType="submit" loading={isLoading}>
