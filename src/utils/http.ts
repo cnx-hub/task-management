@@ -12,7 +12,7 @@ interface Config extends RequestInit {
 
 export const http = (
   endpoint: string,
-  { data, token, headers, ...customConfig }: Config
+  { data, token, headers, ...customConfig }: Config = {}
 ) => {
   const config = {
     method: 'GET',
