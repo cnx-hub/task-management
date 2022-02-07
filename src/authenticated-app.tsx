@@ -1,13 +1,13 @@
 import { ProjectListScreen } from 'screens/project-list'
 import { useAuth } from 'context/auth-context'
 import styled from 'styled-components'
-
+import { Row } from './components/lib'
 export default function AuthenticatedApp() {
   const { logout } = useAuth()
   return (
     <Container>
-      <Header>
-        <HeaderLeft>
+      <Header between={true}>
+        <HeaderLeft gap={true}>
           <HeaderItem>LOGO</HeaderItem>
           <HeaderItem>项目</HeaderItem>
           <HeaderItem>用户</HeaderItem>
@@ -39,18 +39,18 @@ const Container = styled.div`
   height: 100vh;
   /* grid-gap: 10rem; */
 `
-const Header = styled.header`
-  grid-area: header;
+const Header = styled(Row)`
+  /* grid-area: header;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: center; */
   justify-content: space-between;
   /* background-color: gray; */
   /* height: 6rem; */
 `
-const HeaderLeft = styled.div`
-  display: flex;
-  align-items: center;
+const HeaderLeft = styled(Row)`
+  /* display: flex;
+  align-items: center; */
 `
 const HeaderRight = styled.div``
 const Main = styled.main`

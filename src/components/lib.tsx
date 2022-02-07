@@ -8,6 +8,27 @@ export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
     <ErrorBox error={error}></ErrorBox>
   </FullPage>
 )
+
+export const Row = styled.div<{
+  gap?: number | boolean
+  between?: boolean
+  marginBottom?: number
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => (props.between ? 'space-between' : undefined)};
+  margin-bottom: ${(props) => props.marginBottom + 'rem'};
+  > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-right: ${(props) =>
+      typeof props.gap === 'number'
+        ? props.gap + 'rem'
+        : props.gap
+        ? '2rem'
+        : undefined};
+  }
+`
 // 类型守卫
 const isError = (value: any): value is Error => value?.message // is类型 表示 value是一个Error 需返回一个boolean
 
