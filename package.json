@@ -19,11 +19,13 @@
     "craco-less": "^2.0.0",
     "dotenv-cli": "^4.1.1",
     "jira-dev-tool": "1.6.59",
+    "json-server": "^0.17.0",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.34.14",
     "react-redux": "^7.2.6",
+    "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
@@ -36,6 +38,7 @@
     "build": "craco  build",
     "test": "craco  test",
     "eject": "react-scripts eject",
+    "json-server": "json-server __json_server_mock__/db.json --watch --port 3001",
     "prepare": "husky install"
   },
   "eslintConfig": {
