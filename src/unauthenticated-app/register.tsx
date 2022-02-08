@@ -55,7 +55,7 @@ export default function RegisterScreen({
         <Input placeholder={'确认密码'} type={'password'} id={'cpassword'} />
       </Form.Item>
       <Form.Item>
-        <LongButton type={'primary'} htmlType="submit">
+        <LongButton type={'primary'} htmlType="submit" loading={isLoading}>
           注册
         </LongButton>
       </Form.Item>
