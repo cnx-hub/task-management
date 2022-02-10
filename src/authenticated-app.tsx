@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Route, Routes } from 'react-router'
 import { Dropdown, Button, Menu } from 'antd'
 
 // 头部模块
@@ -8,15 +9,20 @@ import { resetRoute } from 'utils'
 import { UserPopover } from 'components/user-popover'
 import { useAuth } from 'context/auth-context'
 import { ProjectPopover } from 'components/project-popover'
-
+// 路由跳转内容
 import { ProjectListScreen } from 'screens/project-list'
+import { ProjectScreen } from 'screens/project'
 
 export default function AuthenticatedApp() {
   return (
     <Container>
       <PageHeader />
       <Main>
-        <ProjectListScreen />
+        <Routes>
+          <Route path={'projects'} element={<ProjectListScreen />} />
+          <Route path={'projects/:projectId/*'} element={<ProjectScreen />} />
+          <Route index element={<ProjectScreen />} />
+        </Routes>
       </Main>
     </Container>
   )
@@ -62,10 +68,6 @@ const User = () => {
     </Dropdown>
   )
 }
-
-const HeaderItem = styled.h3`
-  margin-right: 3rem;
-`
 
 const Container = styled.div`
   display: grid;

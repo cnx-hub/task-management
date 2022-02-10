@@ -7,6 +7,6 @@ export const useProjects = (params?: Partial<Project>) => {
 
   // 当params发生变化时 useQuery重新执行一次
   return useQuery<Project[]>(['project', cleanObject(params)], () =>
-    client('project', { data: params })
+    client('projects', { data: params })
   )
 }
