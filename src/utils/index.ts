@@ -23,6 +23,28 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true): void => {
   }, [keepOnUnmount, oldTitle])
 }
 
+export const resetRoute = () => (window.location.href = window.location.origin)
+
+/**
+ * 传入一个对象，和键集合，返回对应的对象中的键值对
+ * @param obj
+ * @param keys
+ */
+export const subset = <
+  O extends { [key in string]: unknown },
+  K extends keyof O
+>(
+  obj: O,
+  keys: K[]
+) => {
+  // 将对象映射成键值对形式的数组[[key,value]]
+  const filteredEntries = Object.entries(obj).filter(([key]) => {
+    return keys.includes(key as K)
+  })
+
+  return Object.fromEntries(filteredEntries) as Pick<O, K>
+}
+
 /**
  * 返回组件的挂载状态，如果还没挂载或者已经卸载，返回false；反之，返回true
  */

@@ -1,26 +1,65 @@
-import { ProjectListScreen } from 'screens/project-list'
-import { useAuth } from 'context/auth-context'
 import styled from 'styled-components'
-import { Row } from './components/lib'
+import { Dropdown, Button, Menu } from 'antd'
+
+// 头部模块
+import { Row, ButtonNoPadding } from 'components/lib'
+import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
+import { resetRoute } from 'utils'
+import { UserPopover } from 'components/user-popover'
+import { useAuth } from 'context/auth-context'
+import { ProjectPopover } from 'components/project-popover'
+
+import { ProjectListScreen } from 'screens/project-list'
+
 export default function AuthenticatedApp() {
-  const { logout } = useAuth()
   return (
     <Container>
-      <Header between={true}>
-        <HeaderLeft gap={true}>
-          <HeaderItem>LOGO</HeaderItem>
-          <HeaderItem>项目</HeaderItem>
-          <HeaderItem>用户</HeaderItem>
-          <HeaderItem as={'div'}>another</HeaderItem>
-        </HeaderLeft>
-        <HeaderRight>
-          <button onClick={logout}>登出</button>
-        </HeaderRight>
-      </Header>
+      <PageHeader />
       <Main>
         <ProjectListScreen />
       </Main>
     </Container>
+  )
+}
+
+const PageHeader = () => {
+  return (
+    <Header between={true}>
+      <HeaderLeft gap={true}>
+        <ButtonNoPadding type={'link'} onClick={resetRoute}>
+          <SoftwareLogo
+            width={'18rem'}
+            color={'rgb(38, 132, 255)'}
+          ></SoftwareLogo>
+        </ButtonNoPadding>
+        <ProjectPopover />
+        <UserPopover />
+      </HeaderLeft>
+      <HeaderRight>
+        <User />
+      </HeaderRight>
+    </Header>
+  )
+}
+
+const User = () => {
+  const { user, logout } = useAuth()
+  return (
+    <Dropdown
+      overlay={
+        <Menu>
+          <Menu.Item key={'logout'}>
+            <Button onClick={logout} type={'link'}>
+              登出
+            </Button>
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      <Button type="link" onClick={(e) => e.preventDefault()}>
+        Hi,{user?.name}
+      </Button>
+    </Dropdown>
   )
 }
 
@@ -40,13 +79,9 @@ const Container = styled.div`
   /* grid-gap: 10rem; */
 `
 const Header = styled(Row)`
-  /* grid-area: header;
-  display: flex;
-  flex-direction: row;
-  align-items: center; */
-  justify-content: space-between;
-  /* background-color: gray; */
-  /* height: 6rem; */
+  padding: 3.2rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
 `
 const HeaderLeft = styled(Row)`
   /* display: flex;

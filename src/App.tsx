@@ -5,6 +5,7 @@ import { FullPageErrorFallback, FullPageLoading } from 'components/lib'
 import { useAuth } from 'context/auth-context'
 
 // 动态加载组件
+const AuthenticatedApp = React.lazy(() => import('authenticated-app'))
 const UnauthenticatedApp = React.lazy(() => import('unauthenticated-app'))
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <div className="App">
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         <React.Suspense fallback={<FullPageLoading />}>
-          {user ? <h1>123</h1> : <UnauthenticatedApp></UnauthenticatedApp>}
+          {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
         </React.Suspense>
       </ErrorBoundary>
     </div>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { DevTools } from 'jira-dev-tool'
-import { Typography, Spin } from 'antd'
+import { Typography, Spin, Button } from 'antd'
 
 export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
   <FullPage>
@@ -29,6 +29,11 @@ export const Row = styled.div<{
         : undefined};
   }
 `
+
+export const ButtonNoPadding = styled(Button)`
+  padding: 0;
+`
+
 // 类型守卫
 const isError = (value: any): value is Error => value?.message // is类型 表示 value是一个Error 需返回一个boolean
 
