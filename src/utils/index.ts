@@ -71,7 +71,7 @@ export const useMount = (callback: () => void) => {
  * 自定义useDebounce hook
  * 用泛型规范
  */
-export const useDebounce = <V>(value: V, delay?: number) => {
+export const useDebounce = <V>(value: V, delay = 500) => {
   const [debouncedValue, setDebouncedValue] = useState(value)
 
   useEffect(() => {

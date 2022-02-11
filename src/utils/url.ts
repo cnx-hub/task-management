@@ -2,7 +2,7 @@ import { URLSearchParamsInit, useSearchParams } from 'react-router-dom'
 import { useMemo, useState } from 'react'
 import { cleanObject, subset } from 'utils/index'
 
-// 获取路由的地址参数
+// 获取路由的地址参数 和 设置路由地址函数
 export const useUrlQueryParam = <K extends string>(keys: K[]) => {
   const [searchParams] = useSearchParams()
   const setSearchParams = useSetUrlSearchParam()
