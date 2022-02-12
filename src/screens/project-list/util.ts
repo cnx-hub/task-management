@@ -1,23 +1,33 @@
 import { useMemo } from 'react'
+import { useProject } from 'utils/project'
 import { useSetUrlSearchParam, useUrlQueryParam } from 'utils/url'
 
 export const useProjectModal = () => {
+  // 项目创建
   const [{ projectCreate }, setProjectCreate] = useUrlQueryParam([
     'projectCreate'
   ])
-  // const [{ editingProjectId }, setEditingProject] = useUrlQueryParam([
-  //   "editingProject",
-  // ]);
+  // 项目编辑
+  const [{ editingProjectId }, setEditingProjectId] = useUrlQueryParam([
+    'editingProjectId'
+  ])
   const setUrlParams = useSetUrlSearchParam()
-  // todo
-  // const { data: editingProject, isLoding } = useProject(
-  //   Number(editingProjectId)
-  // );
+  const { data: editingProject, isLoading } = useProject(
+    Number(editingProjectId)
+  )
 
   const open = () => setProjectCreate({ projectCreate: true })
+  const close = () => setUrlParams({ projectCreate: '', editingProjectId: '' })
+  const startEdit = (id: number) =>
+    setEditingProjectId({ editingProjectId: id })
 
   return {
-    open
+    projectModalOpen: projectCreate === 'true' || Boolean(editingProjectId),
+    open,
+    close,
+    startEdit,
+    editingProject,
+    isLoading
   }
 }
 

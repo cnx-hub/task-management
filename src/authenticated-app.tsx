@@ -11,6 +11,7 @@ import { ProjectPopover } from 'components/project-popover'
 // 路由跳转内容
 import { ProjectListScreen } from 'screens/project-list'
 import { ProjectScreen } from 'screens/project'
+import { ProjectModal } from 'screens/project-list/project-modal'
 
 export default function AuthenticatedApp() {
   return (
@@ -23,6 +24,7 @@ export default function AuthenticatedApp() {
           <Route index element={<ProjectListScreen />} />
         </Routes>
       </Main>
+      <ProjectModal />
     </Container>
   )
 }

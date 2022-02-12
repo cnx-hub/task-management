@@ -23,7 +23,7 @@ export const ProjectPopover = () => {
       />
       <Divider />
       <ButtonNoPadding type="link" onClick={open}>
-        创建项目
+        新建项目
       </ButtonNoPadding>
     </ContentContainer>
   )

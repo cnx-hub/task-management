@@ -4,14 +4,15 @@ import { useDebounce, useDocumentTitle } from 'utils'
 import styled from 'styled-components'
 import { useProjects } from 'utils/project'
 import { useUsers } from 'utils/user'
-import { useProjectsSearchParams } from './util'
-import { ErrorBox, Row } from 'components/lib'
+import { useProjectModal, useProjectsSearchParams } from './util'
+import { ButtonNoPadding, ErrorBox, Row } from 'components/lib'
+import { Profiler } from 'components/profiler'
 
 export const ProjectListScreen = () => {
   useDocumentTitle('项目列表', false)
   // const [users, setUsers] = useState([])
   const [param, setParam] = useProjectsSearchParams()
-
+  const { open } = useProjectModal()
   const debouncedParam = useDebounce(param, 2000)
   // const [isLoading, setIsLoading] = useState(false)
   // const [error, setError] = useState<null | Error>(null)
@@ -49,21 +50,19 @@ export const ProjectListScreen = () => {
   // })
 
   return (
-    <ScreenContainer>
-      <Row marginBottom={2} between={true}>
-        <h1>项目列表</h1>
-        {/* <ButtonNoPadding onClick={open} type={"link"}>
-            创建项目
-          </ButtonNoPadding> */}
-      </Row>
-      <SearchPanel
-        users={users || []}
-        param={param || {}}
-        setParam={setParam}
-      />
-      <ErrorBox error={error} />
-      <List loading={isLoading} users={users || []} dataSource={list || []} />
-    </ScreenContainer>
+    <Profiler id={'项目列表'}>
+      <ScreenContainer>
+        <Row marginBottom={2} between={true}>
+          <h1>项目列表</h1>
+          <ButtonNoPadding onClick={open} type={'link'}>
+            新建项目
+          </ButtonNoPadding>
+        </Row>
+        <SearchPanel users={users || []} param={param} setParam={setParam} />
+        <ErrorBox error={error} />
+        <List loading={isLoading} users={users || []} dataSource={list || []} />
+      </ScreenContainer>
+    </Profiler>
   )
 }
 

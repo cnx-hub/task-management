@@ -1,8 +1,12 @@
-import { Table, TableProps } from 'antd'
+import { Dropdown, Menu, Modal, Table, TableProps } from 'antd'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { Project } from 'types/project'
 import { User } from 'types/user'
+import { Pin } from 'components/pin'
+import { useProjectModal, useProjectsQueryKey } from './util'
+import { useDeleteProject, useEditProject } from 'utils/project'
+import { ButtonNoPadding } from 'components/lib'
 
 // TODO 把ID改成number类型
 // export interface Project {
@@ -18,11 +22,24 @@ interface ListProps extends TableProps<Project> {
   users: User[]
 }
 export const List = ({ users, ...props }: ListProps) => {
+  const { mutate } = useEditProject(useProjectsQueryKey())
+  const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin })
   return (
     <Table
       pagination={false}
       rowKey={'id'}
       columns={[
+        {
+          title: <Pin checked={true} disabled={true} />,
+          render(value, project) {
+            return (
+              <Pin
+                checked={project.pin}
+                onCheckedChange={pinProject(project.id)}
+              />
+            )
+          }
+        },
         {
           title: '名称',
           sorter: (a, b) => a.name.localeCompare(b.name),
@@ -58,28 +75,49 @@ export const List = ({ users, ...props }: ListProps) => {
               </span>
             )
           }
+        },
+        {
+          render(value, project) {
+            return <More project={project} />
+          }
         }
       ]}
       {...props}
     />
   )
+}
 
-  // return <table>
-  //   <thead>
-  //     <tr>
-  //       <th>名称</th>
-  //       <th>负责人</th>
-  //     </tr>
-  //   </thead>
-
-  //   <tbody>
-  //     {
-  //       list.map((project) => <tr key={project.id}>
-  //           <td>{project.name}</td>
-  //           <td>{users.find(user => user.id === project.personId)?.name || "未知"}</td>
-  //         </tr>
-  //       )
-  //     }
-  //   </tbody>
-  // </table>
+const More = ({ project }: { project: Project }) => {
+  const { startEdit } = useProjectModal()
+  const editProject = (id: number) => () => startEdit(id)
+  const { mutate: deleteProject } = useDeleteProject(useProjectsQueryKey())
+  const confirmDeleteProject = (id: number) => {
+    Modal.confirm({
+      title: '确定删除这个项目吗?',
+      content: '点击确定删除',
+      okText: '确定',
+      onOk() {
+        deleteProject({ id })
+      }
+    })
+  }
+  return (
+    <Dropdown
+      overlay={
+        <Menu>
+          <Menu.Item onClick={editProject(project.id)} key={'edit'}>
+            编辑
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => confirmDeleteProject(project.id)}
+            key={'delete'}
+          >
+            删除
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      <ButtonNoPadding type={'link'}>更多</ButtonNoPadding>
+    </Dropdown>
+  )
 }
