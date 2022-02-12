@@ -10,3 +10,16 @@ export const useProjects = (params?: Partial<Project>) => {
     client('projects', { data: params })
   )
 }
+
+// 获取kanban中的后台数据
+export const useProject = (id?: number) => {
+  const client = useHttp()
+
+  return useQuery<Project>(
+    ['project', { id }],
+    () => client(`projects/${id}`),
+    {
+      enabled: Boolean(id)
+    }
+  )
+}
