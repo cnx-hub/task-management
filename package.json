@@ -17,7 +17,9 @@
     "antd": "^4.18.5",
     "axios": "^0.25.0",
     "craco-less": "^2.0.0",
+    "dayjs": "^1.10.7",
     "dotenv-cli": "^4.1.1",
+    "history": "^5.2.0",
     "jira-dev-tool": "1.6.59",
     "json-server": "^0.17.0",
     "qs": "^6.10.3",
@@ -38,7 +40,8 @@
     "build": "craco  build",
     "test": "craco  test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "json-server": "json-server __json_server_mock__/db.json --watch --port 3001"
   },
   "eslintConfig": {
     "extends": [

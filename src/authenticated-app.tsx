@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Route, Routes } from 'react-router'
 import { Dropdown, Button, Menu } from 'antd'
-
 // 头部模块
 import { Row, ButtonNoPadding } from 'components/lib'
 import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
@@ -19,9 +18,9 @@ export default function AuthenticatedApp() {
       <PageHeader />
       <Main>
         <Routes>
-          <Route path={'projects'} element={<ProjectListScreen />} />
-          <Route path={'projects/:projectId/*'} element={<ProjectScreen />} />
-          <Route index element={<ProjectScreen />} />
+          <Route path={'/projects'} element={<ProjectListScreen />} />
+          <Route path={'/projects/:projectId/*'} element={<ProjectScreen />} />
+          <Route index element={<ProjectListScreen />} />
         </Routes>
       </Main>
     </Container>
@@ -81,7 +80,7 @@ const Container = styled.div`
   /* grid-gap: 10rem; */
 `
 const Header = styled(Row)`
-  padding: 3.2rem;
+  padding: 3rem;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   z-index: 1;
 `
