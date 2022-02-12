@@ -1,18 +1,18 @@
-import { render } from '@testing-library/react'
-import { Table, TableProps, TabsProps } from 'antd'
+import { Table, TableProps } from 'antd'
 import { Link } from 'react-router-dom'
-import { User } from './search-panel'
 import dayjs from 'dayjs'
+import { Project } from 'types/project'
+import { User } from 'types/user'
 
 // TODO 把ID改成number类型
-export interface Project {
-  id: string
-  name: string
-  personId: string
-  pin: boolean
-  organization: string
-  created: number
-}
+// export interface Project {
+//   id: string
+//   name: string
+//   personId: string
+//   pin: boolean
+//   organization: string
+//   created: number
+// }
 
 interface ListProps extends TableProps<Project> {
   users: User[]

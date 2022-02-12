@@ -58,3 +58,6 @@ export const useHttp = () => {
     [user?.token]
   )
 }
+// 类型别名： 大多数情况下可以与 interface 互换, 但是 interface 没法实现 Utilit type
+// type Person = { name: string }
+// const xiaoMing: Person = {name: 'xiaoming'}

@@ -64,7 +64,7 @@ export const useMountedRef = () => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback()
-  }, [callback])
+  }, []) // callback作为依赖会使该hook被不停调用
 }
 
 /**

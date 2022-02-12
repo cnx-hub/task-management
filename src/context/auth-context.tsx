@@ -13,8 +13,9 @@ interface AuthForm {
 
 const bootstrapUser = async () => {
   let user = null
+  // 从localStorage中得到token
   const token = auth.getToken()
-  // token保持登录状态
+  // token保持登录状态, 携带token发送请求得到user信息
   if (token) {
     const data = await http('me', { token })
     user = data.user
