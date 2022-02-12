@@ -50,7 +50,9 @@ export const http = (
 export const useHttp = () => {
   const { user } = useAuth()
   // utility type 的用法：用泛型给它传入一个其他类型，然后utility type对这个类型进行某种操作
+  // return ([endpoint, config]: [string, Config]) => http(endpoint, {...config, token: user?.token})
   return useCallback(
+    // Paramter<typeof http> === [string, Config]
     (...[endpoint, config]: Parameters<typeof http>) =>
       http(endpoint, { ...config, token: user?.token }),
     [user?.token]
