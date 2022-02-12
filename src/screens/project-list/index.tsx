@@ -4,6 +4,7 @@ import { List } from './list'
 import { useEffect, useState } from 'react'
 import { cleanObject, useDebounce, useDocumentTitle, useMount } from 'utils'
 import * as qs from 'qs'
+import styled from 'styled-components'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -38,12 +39,17 @@ export const ProjectListScreen = () => {
   })
 
   return (
-    <div>
+    <Container>
+      <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam} />
       <List users={users || []} dataSource={list || []} />
-    </div>
+    </Container>
   )
 }
 
 // 阻止在已卸载组件上赋值
 ProjectListScreen.whyDidYouRender = false
+
+const Container = styled.div`
+  padding: 3.2rem;
+`
