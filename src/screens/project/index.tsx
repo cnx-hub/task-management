@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Route, Routes, useLocation } from 'react-router'
 // 侧边栏部分
@@ -7,22 +7,31 @@ import { Menu } from 'antd'
 // 主体部分
 import { KanbanScreen } from 'screens/kanban'
 import { EpicScreen } from 'screens/epic'
+import { MenuProps } from 'antd/node_modules/rc-menu'
 
 //获取当前地址的最后一个值  /kanban  /epic
 const useRouteType = () => {
   const utils = useLocation().pathname.split('/')
   // 将默认地址变为kanban
-  if (
-    utils[utils.length - 1] !== 'kanban' ||
-    utils[utils.length - 1] !== 'epic'
-  )
+  // if (
+  //   utils[utils.length - 1] !== 'kanban' ||
+  //   utils[utils.length - 1] !== 'epic'
+  // )
+  //   return 'kanban'
+  if (!['kanban', 'epic'].includes(utils[utils.length - 1])) {
     return 'kanban'
+  }
   return utils[utils.length - 1]
 }
 
 export function ProjectScreen() {
   const routeType = useRouteType()
+  // const [curMenu, setCurMenu] = useState('kanban')
+  // const selectMenu = (evt: MenuInfoProps) => {
+  //   // setCurMenu()
+  //   console.log(evt.activeKey);
 
+  // }
   return (
     <Container>
       <Aside>
