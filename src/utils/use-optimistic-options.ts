@@ -15,7 +15,6 @@ export const useConfig = (
       const previousItems = queryClient.getQueryData(queryKey)
 
       queryClient.setQueryData(queryKey, (old?: any[]) => {
-        console.log(target, old, previousItems)
         return callback(target, old)
       })
       return { previousItems }
