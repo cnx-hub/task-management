@@ -19,6 +19,7 @@ import { Task } from 'types/task'
 import { Mark } from 'components/mark'
 import { useTaskTypes } from 'utils/task-type'
 import { TaskModal } from 'screens/kanban/task-modal'
+import { CreateTask } from 'screens/kanban/create-task'
 
 export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
   ({ kanban, ...props }, ref) => {
@@ -51,6 +52,7 @@ export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
               ))}
             </DropChild>
           </Drop>
+          <CreateTask kanbanId={kanban.id} />
         </TasksContainer>
         <TaskModal />
       </Container>

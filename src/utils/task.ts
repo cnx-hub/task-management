@@ -7,7 +7,8 @@ import { SortProps } from 'utils/kanban'
 import {
   useReorderTaskConfig,
   useEditConfig,
-  useDeleteConfig
+  useDeleteConfig,
+  useAddConfig
 } from 'utils/use-optimistic-options'
 import { Project } from 'types/project'
 // 获取某一看板全部的任务
@@ -56,4 +57,17 @@ export const useDeleteTask = (queryKey: QueryKey) => {
       method: 'DELETE'
     })
   }, useDeleteConfig(queryKey))
+}
+// 添加任务
+export const useAddTask = (queryKey: QueryKey) => {
+  const client = useHttp()
+
+  return useMutation(
+    (params: Partial<Task>) =>
+      client(`tasks`, {
+        data: params,
+        method: 'POST'
+      }),
+    useAddConfig(queryKey)
+  )
 }
