@@ -73,8 +73,8 @@ export function KanbanScreen() {
 // 拖拽结束回调的事件
 export const useDragEnd = () => {
   const { data: kanbans } = useKanbans(useKanbanSearchParams())
-  const { data: reorderKanban } = useReorderKanban(useKanbansQueryKey())
-  const { data: reorderTask } = useReorderTask(useTasksQueryKey())
+  const { mutate: reorderKanban } = useReorderKanban(useKanbansQueryKey())
+  const { mutate: reorderTask } = useReorderTask(useTasksQueryKey())
   const { data: allTasks = [] } = useTasks(useTasksSearchParams())
 
   return useCallback(

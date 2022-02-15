@@ -4,9 +4,13 @@ import { Task } from 'types/task'
 import { useDebounce } from 'utils'
 
 import { SortProps } from 'utils/kanban'
-import { useReorderTaskConfig } from 'utils/use-optimistic-options'
+import {
+  useReorderTaskConfig,
+  useEditConfig,
+  useDeleteConfig
+} from 'utils/use-optimistic-options'
 import { Project } from 'types/project'
-
+// 获取某一看板全部的任务
 export const useTasks = (param: Partial<Task>) => {
   const client = useHttp()
   const debouncedParam = { ...param, name: useDebounce(param?.name) }
@@ -15,14 +19,14 @@ export const useTasks = (param: Partial<Task>) => {
     client('tasks', { data: debouncedParam })
   )
 }
-
+// 获取某一看板的具体任务
 export const useTask = (id?: number) => {
   const client = useHttp()
-  return useQuery<Project>(['task', { id }], () => client(`tasks${id}`), {
+  return useQuery<Project>(['task', { id }], () => client(`tasks/${id}`), {
     enabled: Boolean(id)
   })
 }
-
+// 重新排列任务
 export const useReorderTask = (queryKey: QueryKey) => {
   const client = useHttp()
 
@@ -32,4 +36,24 @@ export const useReorderTask = (queryKey: QueryKey) => {
       method: 'POST'
     })
   }, useReorderTaskConfig(queryKey))
+}
+// 编辑任务
+export const useEditTask = (queryKey: QueryKey) => {
+  const client = useHttp()
+  return useMutation((params: Partial<Task>) => {
+    return client(`tasks/${params.id}`, {
+      method: 'PATCH',
+      data: params
+    })
+  }, useEditConfig(queryKey))
+}
+// 删除任务
+export const useDeleteTask = (queryKey: QueryKey) => {
+  const client = useHttp()
+
+  return useMutation(({ id }: { id: number }) => {
+    return client(`tasks/${id}`, {
+      method: 'DELETE'
+    })
+  }, useDeleteConfig(queryKey))
 }

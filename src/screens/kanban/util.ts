@@ -46,16 +46,14 @@ export const useTasksModal = () => {
     },
     [setEditingTaskId]
   )
-
   const close = useCallback(() => {
     setEditingTaskId({ editingTaskId: '' })
   }, [setEditingTaskId])
-
   return {
+    editingTaskId,
+    editingTask,
     startEdit,
     close,
-    isLoading,
-    editingTask,
-    editingTaskId
+    isLoading
   }
 }

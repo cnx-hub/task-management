@@ -18,6 +18,7 @@ import { Drag, Drop, DropChild } from 'components/drag-and-drop'
 import { Task } from 'types/task'
 import { Mark } from 'components/mark'
 import { useTaskTypes } from 'utils/task-type'
+import { TaskModal } from 'screens/kanban/task-modal'
 
 export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
   ({ kanban, ...props }, ref) => {
@@ -51,6 +52,7 @@ export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
             </DropChild>
           </Drop>
         </TasksContainer>
+        <TaskModal />
       </Container>
     )
   }
