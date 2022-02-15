@@ -11,7 +11,7 @@ import {
 export const useKanbans = (param?: Partial<Kanban>) => {
   const client = useHttp()
 
-  return useQuery<Kanban[]>(['kanban', param], () =>
+  return useQuery<Kanban[]>(['kanbans', param], () =>
     client('kanbans', { data: param })
   )
 }
