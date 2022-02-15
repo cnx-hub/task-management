@@ -10,13 +10,14 @@ import {
 
 // 拖拽的列表   children属性重新封装为ReactNode
 type DropProps = Omit<DroppableProps, 'children'> & { children: ReactNode }
-export const Drop = ({ children, ...props }: DropProps) => {
+
+export const Drop = ({ children, type, direction, droppableId }: DropProps) => {
   return (
-    <Droppable {...props}>
+    <Droppable type={type} direction={direction} droppableId={droppableId}>
       {(provided) => {
         if (React.isValidElement(children)) {
           return React.cloneElement(children, {
-            ...provided,
+            ...provided.droppableProps,
             ref: provided.innerRef,
             provided
           })
