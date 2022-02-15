@@ -58,6 +58,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 16rem 1fr;
   width: 100%;
+  height: calc(100vh - 6.4rem);
 `
 const Aside = styled.aside`
   background-color: rgb(244, 245, 247);

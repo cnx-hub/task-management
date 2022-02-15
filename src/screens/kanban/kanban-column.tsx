@@ -126,6 +126,7 @@ const More = ({ kanban }: { kanban: Kanban }) => {
 
 const TasksContainer = styled.div`
   overflow: scroll;
+  flex: 1;
 
   ::-webkit-scrollbar {
     display: none;
