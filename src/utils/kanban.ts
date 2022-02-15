@@ -3,7 +3,8 @@ import { useHttp } from 'utils/http'
 import { Kanban } from 'types/kanban'
 import {
   useReorderKanbanConfig,
-  useDeleteConfig
+  useDeleteConfig,
+  useAddConfig
 } from 'utils/use-optimistic-options'
 
 // 请求看板的数据
@@ -49,4 +50,14 @@ export const useDeleteKanban = (queryKey: QueryKey) => {
       }),
     useDeleteConfig(queryKey)
   )
+}
+// 添加看板
+export const useAddKanban = (queryKey: QueryKey) => {
+  const client = useHttp()
+  return useMutation((params: Partial<Kanban>) => {
+    return client(`kanbans`, {
+      data: params,
+      method: 'POST'
+    })
+  }, useAddConfig(queryKey))
 }

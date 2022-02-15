@@ -7,6 +7,7 @@ import { Profiler } from 'components/profiler'
 import { ScreenContainer } from 'components/lib'
 import { SearchPanel } from 'screens/kanban/search-panel'
 import { KanbanColumn } from 'screens/kanban/kanban-column'
+import { CreateKanban } from 'screens/kanban/create-kanban'
 // 页面逻辑
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useKanbans, useReorderKanban } from 'utils/kanban'
@@ -62,6 +63,7 @@ export function KanbanScreen() {
                   ))}
                 </DropChild>
               </Drop>
+              <CreateKanban />
             </ColumnsContainer>
           )}
         </ScreenContainer>
