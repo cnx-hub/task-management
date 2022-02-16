@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect } from 'react'
 import styled from 'styled-components'
 import taskIcon from 'assets/task.svg'
 import bugIcon from 'assets/bug.svg'
@@ -25,6 +25,8 @@ export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
   ({ kanban, ...props }, ref) => {
     const { data: allTasks } = useTasks(useTasksSearchParams())
     const tasks = allTasks?.filter((task) => task.kanbanId === kanban.id)
+
+    useEffect(() => {}, [])
 
     return (
       <Container {...props} ref={ref}>
@@ -63,6 +65,7 @@ export const KanbanColumn = forwardRef<HTMLDivElement, { kanban: Kanban }>(
 const TaskCard = ({ task }: { task: Task }) => {
   const { startEdit } = useTasksModal()
   const { name: keyword } = useTasksSearchParams()
+
   return (
     <Card
       onClick={() => startEdit(task.id)}

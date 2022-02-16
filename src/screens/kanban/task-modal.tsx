@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Modal, Form, Input, Button } from 'antd'
 import { useTasksModal, useTasksQueryKey } from './util'
 import { useDeleteTask, useEditTask } from 'utils/task'
@@ -43,16 +43,20 @@ export function TaskModal() {
     })
   }
 
+  useEffect(() => {
+    form.setFieldsValue(editingTask)
+  }, [editingTask, form])
+
   return (
     <Modal
       forceRender={true}
-      okText={'确认'}
-      cancelText={'取消'}
-      title={'编辑任务'}
       onCancel={onCancel}
       onOk={onOk}
-      visible={Boolean(editingTaskId)}
+      okText={'确认'}
+      cancelText={'取消'}
       confirmLoading={editLoading}
+      title={'编辑任务'}
+      visible={!!editingTaskId}
     >
       <Form {...layout} initialValues={editingTask} form={form}>
         <Form.Item
