@@ -17,11 +17,11 @@ export const useTasksSearchParams = () => {
   const projectId = useProjectIdInUrl()
   return useMemo(
     () => ({
-      projectId,
-      typeId: Number(param.typeId) || undefined,
-      processorId: Number(param.processorId) || undefined,
-      tagId: Number(param.tagId) || undefined,
-      name: param.name
+      projectId, //对应项目的id
+      typeId: Number(param.typeId) || undefined, //bug/task
+      processorId: Number(param.processorId) || undefined, //负责人
+      tagId: Number(param.tagId) || undefined, //
+      name: param.name //项目的名称
     }),
     [param, projectId]
   )

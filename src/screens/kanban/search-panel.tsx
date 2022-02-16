@@ -26,6 +26,7 @@ export const SearchPanel = () => {
       tagId: undefined,
       typeId: undefined
     })
+    setParam({ name: '' })
   }
 
   return (
@@ -33,6 +34,7 @@ export const SearchPanel = () => {
       <Input
         style={{ width: '20rem' }}
         placeholder={'任务名'}
+        value={param.name}
         onChange={(e) => setParam({ name: e.target.value })}
       />
       <UserSelect
