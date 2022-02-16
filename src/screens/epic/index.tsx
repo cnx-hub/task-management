@@ -39,11 +39,7 @@ export const EpicScreen = () => {
           </Button>
         </Row>
         <List
-          style={
-            {
-              // overflow: 'scroll'
-            }
-          }
+          style={{ overflow: 'scroll' }}
           dataSource={epics}
           itemLayout={'vertical'}
           renderItem={(epic) => (
