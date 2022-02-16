@@ -39,7 +39,7 @@ export const EpicScreen = () => {
           </Button>
         </Row>
         <List
-          style={{ overflow: 'scroll' }}
+          style={{ overflowY: 'scroll' }}
           dataSource={epics}
           itemLayout={'vertical'}
           renderItem={(epic) => (
@@ -70,6 +70,7 @@ export const EpicScreen = () => {
                   ?.filter((task) => task.epicId === epic.id)
                   .map((task) => (
                     <Link
+                      style={{ display: 'block' }}
                       to={`/projects/${currentProject?.id}/kanban?editingTaskId=${task.id}`}
                       key={task.id}
                     >
