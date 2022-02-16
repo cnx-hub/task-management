@@ -14,7 +14,7 @@
     "@types/react-redux": "^7.1.22",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^5.1.21",
-    "antd": "^4.18.5",
+    "antd": "4.12.3",
     "axios": "^0.25.0",
     "craco-less": "^2.0.0",
     "dayjs": "^1.10.7",
@@ -41,10 +41,10 @@
     "build": "craco  build",
     "test": "craco  test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
     "prepare": "husky install",
     "json-server": "json-server __json_server_mock__/db.json --watch --port 3001",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r git@github.com:wzx19980321/wzx19980321.github.io.git -b main"
+    "deploy": "gh-pages -d build -r https://github.com/chennanxiaogit1/chennanxiaogit1.github.io.git -b main"
   },
   "eslintConfig": {
     "extends": [

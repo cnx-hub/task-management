@@ -7,7 +7,6 @@ import { Menu } from 'antd'
 // 主体部分
 import { KanbanScreen } from 'screens/kanban'
 import { EpicScreen } from 'screens/epic'
-import { MenuProps } from 'antd/node_modules/rc-menu'
 
 //获取当前地址的最后一个值  /kanban  /epic
 const useRouteType = () => {
@@ -59,6 +58,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 16rem 1fr;
   width: 100%;
+  height: calc(100vh - 6.4rem);
 `
 const Aside = styled.aside`
   background-color: rgb(244, 245, 247);
