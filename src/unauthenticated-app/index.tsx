@@ -3,10 +3,9 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { Card, Divider, Button } from 'antd'
 
-import logo from 'assets/logo.svg'
 import left from 'assets/left.svg'
 import right from 'assets/right.svg'
-
+import logo from 'assets/logo.svg'
 import { ErrorBox } from 'components/lib'
 import { useDocumentTitle } from 'utils'
 import LoginScreen from 'unauthenticated-app/login'
@@ -73,7 +72,7 @@ const Background = styled.div`
 const Header = styled.header`
   background: url(${logo}) no-repeat center;
   padding: 5rem 0;
-  background-size: 8rem;
+  background-size: 14rem;
   width: 100%;
 `
 

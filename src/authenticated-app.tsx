@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router'
 import { Dropdown, Button, Menu } from 'antd'
 // 头部模块
 import { Row, ButtonNoPadding } from 'components/lib'
-import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
+// import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
+import { ReactComponent as SoftwareLogo } from 'assets/logo.svg'
 import { resetRoute } from 'utils'
 import { UserPopover } from 'components/user-popover'
 import { useAuth } from 'context/auth-context'
@@ -35,7 +36,8 @@ const PageHeader = () => {
       <HeaderLeft gap={true}>
         <ButtonNoPadding type={'link'} onClick={resetRoute}>
           <SoftwareLogo
-            width={'18rem'}
+            width={'13rem'}
+            height={'3rem'}
             color={'rgb(38, 132, 255)'}
           ></SoftwareLogo>
         </ButtonNoPadding>
